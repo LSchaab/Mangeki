@@ -1,0 +1,168 @@
+# Mangeki — Design Spec
+
+**Date:** 2026-07-27
+**Status:** Approved (design), pending implementation plan
+**Author:** Vaiven studio (Lourdes) with Claude Code
+
+---
+
+## 1. Overview & Goals
+
+**Mangeki** is a manga/manhwa-reader web app built as a **showcase piece for the Vaiven
+studio portfolio**. It is a "hybrid demo": the browsing and discovery experience is fully
+built and visually polished, while the actual *reading* is intentionally disabled
+(`🔒 Read — Coming soon`). A focused set of features genuinely works — demo account
+login, a personal library, and the ability to add your own titles — all persisted in the
+browser via `localStorage`, so there is **no backend to run or deploy**.
+
+### Goals
+1. Look and feel like a real, polished product.
+2. Demonstrate modern frontend craft (Next.js App Router + TypeScript + Tailwind CSS).
+3. Include a few genuinely functional, interactive features to prove it is more than a
+   static mockup.
+
+### Success criteria
+- The site runs locally with `npm run dev` and requires no external accounts or services.
+- A visitor can browse a catalog of **50+** real manga/manhwa titles with covers,
+  synopses, authors, and genres.
+- A visitor can sign up / log in (demo-grade), save titles to a personal library, remove
+  them, and add their own custom titles — and these persist across page reloads.
+- The reading feature is visibly present but clearly disabled, communicating "planned,
+  not broken."
+
+---
+
+## 2. Sitemap (pages)
+
+| Page             | Route                        | Purpose |
+|------------------|------------------------------|---------|
+| **Home**         | `/`                          | Hero, featured titles, and an **"Our Selection from [Category]"** curated section (Mangeki's own recommendations). |
+| **Catalog**      | `/catalog`                   | Grid of all titles with filters (genre, type manga/manhwa, status). |
+| **Title Detail** | `/title/[id]`                | Cover, synopsis, rating, chapter list, **🔒 disabled Read** entry point, and Save-to-Library. |
+| **Authors**      | `/authors`, `/authors/[id]`  | Directory of authors + individual author profile pages. |
+| **Genres**       | `/genres`, `/genres/[slug]`  | Browse titles by genre. |
+| **My Library**   | `/library`                   | The logged-in user's saved titles + user-added titles. Auth-gated. |
+| **Login**        | `/login`                     | Demo login form. |
+| **Sign-up**      | `/signup`                    | Demo registration form. |
+| **About Mangeki**| `/about`                     | What the app is, its story/history, and its mission. |
+| **404**          | catch-all `not-found`        | Custom-designed not-found page. |
+| **Legal**        | `/legal`                     | Terms / privacy placeholder (footer link). |
+| **Contact**      | `/contact`                   | Contact page (footer link). |
+
+**Global chrome:** shared header (logo, nav, auth state) and footer ("Made by Vaiven"
+credit + Legal/Contact links) across all pages. Filtering happens on the Catalog page;
+there is no dedicated search-results page in scope.
+
+---
+
+## 3. Functional features (what genuinely works)
+
+These are the "really works" parts of the hybrid demo. All state lives in `localStorage`.
+
+### 3.1 Auth (demo-grade)
+- **Sign-up** stores a user record `{ id, username, email, password }` in `localStorage`.
+- **Login** validates credentials against stored users and sets an active session.
+- **Logout** clears the active session.
+- ⚠️ **This is not real security.** Passwords are stored in plain form in the browser.
+  This is acceptable and expected for a portfolio demo, and will be clearly noted in the
+  code. No real authentication, hashing, or server is in scope.
+
+### 3.2 My Library (no stats)
+- On any Title Detail page, a **Save** button adds the title to the logged-in user's
+  library.
+- Saved titles are listed on `/library` and can be removed.
+- Saving the same title twice is prevented (no duplicates).
+- **No reading statistics** of any kind.
+
+### 3.3 Add your own title
+- If a title is not in the catalog, the user can create one via a form:
+  `title, author, type (manga|manhwa), cover image URL, synopsis, genres`.
+- The custom title is saved to the user's library and rendered like any other card.
+- Basic validation: required fields must be present before saving.
+
+### 3.4 Auth-gating
+- `/library`, **Save**, and **Add your own** require a logged-in user.
+- Logged-out users attempting these actions are prompted to log in.
+
+---
+
+## 4. Architecture & data
+
+### 4.1 Framework
+- **Next.js (App Router) + TypeScript.** Routes map 1:1 to the sitemap above.
+- Interactive, state-driven UI (auth, library) is implemented as **client components**,
+  since state lives in `localStorage`.
+- **Tailwind CSS** for styling.
+
+### 4.2 Catalog data source — Jikan seed script
+The showcase catalog is generated once by a seed script, not typed by hand and not
+fetched live at runtime.
+
+- A script (`npm run seed`) fetches **~60 popular manga and manhwa** from the
+  **Jikan API** (MyAnimeList, no API key required).
+- It maps each entry into the app's typed shape and writes:
+  - `src/data/titles.json` — the catalog
+  - `src/data/authors.json` — derived author records
+  - `src/data/genres.json` — derived genre list
+- Rationale: real covers/synopses with zero manual data entry, while keeping the app
+  **fully self-contained and offline at runtime** (no rate limits, CORS, or loading
+  states in the demo). The JSON can be re-generated or hand-tweaked later.
+- **Fallback:** if Jikan is unreachable when seeding, a committed snapshot of the JSON
+  files ensures the app always has data. The generated JSON is committed to the repo.
+
+### 4.3 `localStorage` schema
+All keys are namespaced under `mangeki.*`:
+
+| Key                            | Value |
+|--------------------------------|-------|
+| `mangeki.users`                | Array of registered demo accounts. |
+| `mangeki.session`              | The currently logged-in user's id (or empty). |
+| `mangeki.library.<userId>`     | Array of saved catalog title ids. |
+| `mangeki.customTitles.<userId>`| Array of user-created titles. |
+
+### 4.4 State management
+- A small **`useLocalStorage` hook** wraps all reads/writes (SSR-safe: guards `window`).
+- An **`AuthContext`** and a **`LibraryContext`** expose the current user and library
+  operations (save, remove, add-custom, login, logout, signup) so page components stay
+  clean and the logic is testable in isolation.
+
+### 4.5 Error & edge handling
+- Empty library state (friendly empty state + link to catalog).
+- Duplicate save attempts (ignored, no duplicate entries).
+- Invalid login (wrong credentials → clear error message).
+- Add-title form with missing required fields (inline validation).
+- First visit with no data yet (safe defaults).
+- SSR-safe `localStorage` access (never touch `window` on the server).
+
+---
+
+## 5. Non-goals (explicitly out of scope)
+
+- ❌ A working reader — reading is disabled by design (`🔒 Read — Coming soon`).
+- ❌ Real or secure authentication, a server, or a database.
+- ❌ Reading statistics, comments/reviews, ratings by users, payments.
+- ❌ Hosting real manga chapter content.
+- ❌ Deployment/hosting setup — the app runs locally; deployment can be added later.
+- ❌ Live runtime API calls for the catalog (seed-once instead).
+
+---
+
+## 6. Testing
+
+- **Vitest + React Testing Library.**
+- Unit-test the auth and library logic: signup, login, logout, save, remove-duplicate
+  handling, add-custom-title validation.
+- Smoke-render the key pages (Home, Catalog, Title Detail, Library) with seed/mock data.
+
+---
+
+## 7. Tech stack summary
+
+| Layer            | Choice |
+|------------------|--------|
+| Framework        | Next.js (App Router) + TypeScript |
+| Styling          | Tailwind CSS |
+| Auth / Library / Custom titles | `localStorage` (client-side, demo-grade) |
+| Catalog data     | Jikan API → one-time seed script → local JSON (50+ titles, mixed manga/manhwa) |
+| Testing          | Vitest + React Testing Library |
+| Hosting          | None (runs locally; deployment out of scope) |
