@@ -51,9 +51,10 @@ browser via `localStorage`, so there is **no backend to run or deploy**.
 | **Legal**        | `/legal`                     | Terms / privacy placeholder (footer link). |
 | **Contact**      | `/contact`                   | Contact page (footer link). |
 
-**Global chrome:** shared header (logo, nav, auth state) and footer ("Made by Vaiven"
-credit + Legal/Contact links) across all pages. Filtering happens on the Catalog page;
-there is no dedicated search-results page in scope.
+**Global chrome:** shared header (Mangeki logo, nav, and the brand **search /
+notifications / profile** icons — see §8; auth state reflected on the profile control)
+and footer ("Made by Vaiven" credit + Legal/Contact links) across all pages. Filtering
+happens on the Catalog page; there is no dedicated search-results page in scope.
 
 ---
 
@@ -190,3 +191,62 @@ All keys are namespaced under `mangeki.*`:
 | Catalog data     | Jikan API → one-time seed script → local JSON (50+ titles, mixed manga/manhwa) |
 | Testing          | Vitest + React Testing Library |
 | Hosting          | GitHub Pages (static export) at `mangeki.lourdesschaab.com`, deployed via GitHub Actions |
+
+---
+
+## 8. Design System & Brand
+
+Mangeki uses the Vaiven brand identity: a **light** UI built on brand blue, primary red,
+and a navy ink color, with a manga-collage hero. (The earlier dark-theme styling in the
+implementation plan is superseded by this palette.)
+
+### 8.1 Color tokens
+
+| Token            | Hex        | Usage |
+|------------------|------------|-------|
+| `brand-blue`     | `#556FA0`  | Hero and feature-section backgrounds (the base "color" behind cropped SVG motifs). |
+| `brand-red`      | `#E7403B`  | Primary actions, logo, accents, the hero "red circle". |
+| `brand-red-light`| `#FFDADA`  | Secondary/soft red — tints, hovers, badges, light section fills. |
+| `brand-navy`     | `#1F2D52`  | Primary text, icon outlines, ink details (sampled from the brand icons). |
+| `surface`        | `#FFFFFF`  | Default page background / cards. |
+
+These become Tailwind theme colors (e.g. `bg-brand-blue`, `text-brand-navy`,
+`bg-brand-red`, `bg-brand-red-light`).
+
+### 8.2 Assets (in `resources/`, to be moved to `public/`)
+
+The build serves these from `public/`; the plan includes moving `resources/*` →
+`public/brand/` so they resolve at runtime.
+
+| File | Type | Role |
+|------|------|------|
+| `hero_image.png` | raster | Hero collage (girl + headphones + red circle + ink art) on `brand-blue`. |
+| `circles_svg.svg` | 1920×1925 vector | Large seigaiha-style circle motif — a **cropped SVG layered on a colored section background**. |
+| `cloud_svg.svg` | vector | Japanese cloud/wave motif — another **cropped-SVG-on-color** section treatment. |
+| `search_icon.svg` | 72×72 icon | Header search control (navy stroke, red inner). |
+| `notifications_icon.svg` | 72×72 icon | Header notifications control (navy bell, red dot). |
+| `profile_icon.svg` | 90×80 icon | Header profile/avatar control (headphoned face mascot); reflects auth state. |
+
+**Section pattern ("color + cropped SVG"):** feature sections use a solid brand color as
+the background with `circles_svg`/`cloud_svg` positioned and clipped (overflow-hidden) as
+a decorative overlay, content layered above.
+
+### 8.3 Header composition
+
+Logo (left) · primary nav · right-aligned icon cluster: **search**, **notifications**,
+**profile**. Logged out → profile icon links to `/login`. Logged in → profile control
+shows the account / opens a menu with "My Library" and "Log out". (Notifications is
+decorative for the demo — no backend.)
+
+### 8.4 Typography
+
+Bold, high-contrast display headings with a clean sans body. Exact typeface to be
+finalized from the landing screenshots; until then use a strong Google sans (e.g. Poppins
+or Inter for body) loaded via `next/font`.
+
+### 8.5 Pending
+
+The **exact landing/Home layout** (section order, hero composition, spacing) will be
+finalized from the provided landing screenshots and folded into the spec and the
+implementation plan's Home/styling tasks. This section 8 captures only the confirmed brand
+system.

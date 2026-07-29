@@ -21,7 +21,12 @@
 - **SSR/static-export safety:** never touch `window`/`localStorage` during render on the server; always guard.
 - **Catalog size:** 50+ titles, mixed manga and manhwa.
 - **Hosting:** GitHub Pages at `mangeki.lourdesschaab.com`; served from subdomain root (no `basePath`).
+- **Brand palette (Tailwind theme tokens):** `brand-blue #556FA0`, `brand-red #E7403B`, `brand-red-light #FFDADA`, `brand-navy #1F2D52`, `surface #FFFFFF`. See spec §8. The UI is **light** (blue/red/navy on white) — NOT the dark neutral theme shown in the illustrative code snippets below.
+- **Brand assets:** move `resources/*` → `public/brand/` and reference from there (`/brand/hero_image.png`, `/brand/circles_svg.svg`, `/brand/cloud_svg.svg`, `/brand/search_icon.svg`, `/brand/notifications_icon.svg`, `/brand/profile_icon.svg`).
+- **Header icons:** header includes search / notifications / profile icon controls (spec §8.3); profile reflects auth state.
 - **Commits:** frequent, one per task step group as indicated.
+
+> ⚠️ **STYLING IS PROVISIONAL.** The Tailwind class names in the task code below (e.g. `bg-neutral-950`, `text-neutral-100`) predate the brand assets and use a placeholder dark theme. Implement each task's **structure, logic, and tests as written**, but apply the **brand palette from spec §8** for actual colors. The **exact Home/landing layout** (Task 9) is on hold until the landing screenshots are provided — build the other tasks first, or stub Home minimally, and finalize Home + a global restyle pass once screenshots land.
 
 ---
 
@@ -111,6 +116,32 @@ const nextConfig = {
   images: { unoptimized: true },
 };
 export default nextConfig;
+```
+
+- [ ] **Step 2b: Add brand color tokens and move brand assets**
+
+In `tailwind.config.ts`, extend the theme colors:
+```ts
+// theme.extend.colors
+colors: {
+  brand: {
+    blue: '#556FA0',
+    red: '#E7403B',
+    'red-light': '#FFDADA',
+    navy: '#1F2D52',
+  },
+},
+```
+
+Move the brand assets so Next can serve them:
+```bash
+mkdir -p public/brand
+git mv resources/hero_image.png public/brand/hero_image.png
+git mv resources/circles_svg.svg public/brand/circles_svg.svg
+git mv resources/cloud_svg.svg public/brand/cloud_svg.svg
+git mv resources/search_icon.svg public/brand/search_icon.svg
+git mv resources/notifications_icon.svg public/brand/notifications_icon.svg
+git mv resources/profile_icon.svg public/brand/profile_icon.svg
 ```
 
 - [ ] **Step 3: Add Vitest + RTL dev deps and config**
