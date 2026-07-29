@@ -29,6 +29,8 @@ browser via `localStorage`, so there is **no backend to run or deploy**.
   them, and add their own custom titles — and these persist across page reloads.
 - The reading feature is visibly present but clearly disabled, communicating "planned,
   not broken."
+- The site is deployed as a static export to **GitHub Pages** at the custom subdomain
+  **`mangeki.lourdesschaab.com`**.
 
 ---
 
@@ -63,6 +65,10 @@ These are the "really works" parts of the hybrid demo. All state lives in `local
 - **Sign-up** stores a user record `{ id, username, email, password }` in `localStorage`.
 - **Login** validates credentials against stored users and sets an active session.
 - **Logout** clears the active session.
+- **Pre-seeded demo account:** a built-in account (username `demo`, password `demo1234`)
+  is available on first load so visitors can log in instantly without registering.
+- **Login-page disclaimer:** the login page shows a visible note, e.g.
+  *"🔓 This is a demo. Log in with — username: `demo` · password: `demo1234`."*
 - ⚠️ **This is not real security.** Passwords are stored in plain form in the browser.
   This is acceptable and expected for a portfolio demo, and will be clearly noted in the
   code. No real authentication, hashing, or server is in scope.
@@ -110,6 +116,23 @@ fetched live at runtime.
 - **Fallback:** if Jikan is unreachable when seeding, a committed snapshot of the JSON
   files ensures the app always has data. The generated JSON is committed to the repo.
 
+### 4.6 Static export & hosting (GitHub Pages)
+- Next.js is configured for **static export** (`output: 'export'`), which produces a
+  fully static site — required for GitHub Pages (no Node server).
+- Implications, all compatible with this app:
+  - `images: { unoptimized: true }` (no server-side image optimization).
+  - Dynamic routes (`/title/[id]`, `/authors/[id]`, `/genres/[slug]`) use
+    `generateStaticParams` to pre-render every page from the seed data at build time.
+  - `trailingSlash: true` for clean static routing on Pages.
+  - No `basePath` needed — served from the root of a subdomain.
+- **Custom domain:** a `public/CNAME` file containing `mangeki.lourdesschaab.com` is
+  committed so Pages serves the custom subdomain.
+- **DNS (user action):** add a `CNAME` record `mangeki` → `<username>.github.io` at the
+  domain registrar/DNS host for `lourdesschaab.com`. (Claude handles all code/config;
+  this DNS record is the one manual step for the user.)
+- **CI/CD:** a GitHub Actions workflow (`.github/workflows/deploy.yml`) runs the seed
+  script, builds the static export, and deploys to GitHub Pages on every push to `main`.
+
 ### 4.3 `localStorage` schema
 All keys are namespaced under `mangeki.*`:
 
@@ -142,8 +165,9 @@ All keys are namespaced under `mangeki.*`:
 - ❌ Real or secure authentication, a server, or a database.
 - ❌ Reading statistics, comments/reviews, ratings by users, payments.
 - ❌ Hosting real manga chapter content.
-- ❌ Deployment/hosting setup — the app runs locally; deployment can be added later.
 - ❌ Live runtime API calls for the catalog (seed-once instead).
+- ❌ A real backend for auth/library on the deployed site — it remains client-side
+  `localStorage` even in production (each visitor's data lives in their own browser).
 
 ---
 
@@ -165,4 +189,4 @@ All keys are namespaced under `mangeki.*`:
 | Auth / Library / Custom titles | `localStorage` (client-side, demo-grade) |
 | Catalog data     | Jikan API → one-time seed script → local JSON (50+ titles, mixed manga/manhwa) |
 | Testing          | Vitest + React Testing Library |
-| Hosting          | None (runs locally; deployment out of scope) |
+| Hosting          | GitHub Pages (static export) at `mangeki.lourdesschaab.com`, deployed via GitHub Actions |
