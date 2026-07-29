@@ -202,6 +202,7 @@ Move `resources/*` → `public/brand/`. Serve from `/brand/...`.
 
 | File | Role |
 |------|------|
+| `mangeki_logo.svg` | Official Mangeki wordmark (274×69, navy `#1F2D54`) — header & (white-filtered) red/blue sections. |
 | `hero_image.png` | Hero collage (girl + headphones + red circle). |
 | `circles_svg.svg` | Seigaiha circle motif — cropped SVG on colored backgrounds (red block, footer, author cards). |
 | `cloud_svg.svg` | Cloud/wave motif — available for section decoration. |
@@ -209,9 +210,11 @@ Move `resources/*` → `public/brand/`. Serve from `/brand/...`.
 | `notifications_icon.svg` | Welcome-bar bell (decorative; red dot). |
 | `profile_icon.svg` | Default profile avatar (headphoned-face mascot). |
 
+**Provided:** `mangeki_logo.svg` is the real wordmark — use it directly. For the white-on-color
+contexts (red description block, footer) render it white via CSS filter (`brightness-0 invert`)
+until a dedicated white SVG is supplied.
+
 **Recreated placeholder assets** (I generate these as code/SVG; swappable later):
-- **Mangeki wordmark** — red "M" mark + "angeki" in navy (header) and an all-white version
-  (red block & footer).
 - **Panda avatar** — the header profile avatar; use `profile_icon.svg` as the default.
 - **App-store badges** — simple "Google Play" / "App Store" SVG badges (non-functional).
 - **Social icons** — Facebook, Instagram, X circular icons (footer; non-functional).

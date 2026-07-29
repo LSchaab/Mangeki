@@ -56,8 +56,8 @@ mangeki/
 ├── vitest.config.ts · vitest.setup.ts · package.json
 ├── public/
 │   ├── CNAME
-│   └── brand/  (hero_image.png, circles_svg.svg, cloud_svg.svg, search_icon.svg,
-│                notifications_icon.svg, profile_icon.svg)
+│   └── brand/  (mangeki_logo.svg, hero_image.png, circles_svg.svg, cloud_svg.svg,
+│                search_icon.svg, notifications_icon.svg, profile_icon.svg)
 ├── scripts/seed.mjs
 ├── .github/workflows/deploy.yml
 └── src/
@@ -117,6 +117,7 @@ In `src/app/layout.tsx`, load fonts via `next/font/google` (Poppins for display,
 
 ```bash
 mkdir -p public/brand
+git mv resources/mangeki_logo.svg public/brand/
 git mv resources/hero_image.png public/brand/
 git mv resources/circles_svg.svg public/brand/
 git mv resources/cloud_svg.svg public/brand/
@@ -156,16 +157,16 @@ export default defineConfig({
 
 **Files:** `src/components/brand/{Wordmark,Avatar,AppBadges,SocialIcons}.tsx`; test `src/components/brand/__tests__/brand.test.tsx`.
 **Interfaces:** Produces —
-- `Wordmark({ variant?: 'color' | 'white', className? })` — the Mangeki logo (red "M" mark + "angeki"; `white` renders all-white for red/blue backgrounds).
+- `Wordmark({ variant?: 'color' | 'white', className? })` — renders the real `/brand/mangeki_logo.svg` (via `next/image`, unoptimized). `variant='white'` applies `brightness-0 invert` for red/blue backgrounds. `aria-label="Mangeki"`.
 - `Avatar({ src?, alt, size? })` — round avatar; defaults to `/brand/profile_icon.svg`.
 - `AppBadges({ className? })` — Google Play + App Store badge SVGs (non-functional `<span>`/links).
 - `SocialIcons({ className? })` — Facebook/Instagram/X round icons (non-functional).
 
-- [ ] **Step 1: Failing test** — assert `Wordmark` renders text "angeki"/accessible name "Mangeki"; `AppBadges` renders "Google Play" and "App Store"; `SocialIcons` renders 3 items with aria-labels (Facebook, Instagram, X).
+- [ ] **Step 1: Failing test** — assert `Wordmark` exposes accessible name "Mangeki" (`getByRole('img', { name: 'Mangeki' })`); `AppBadges` renders "Google Play" and "App Store"; `SocialIcons` renders 3 items with aria-labels (Facebook, Instagram, X).
 
 - [ ] **Step 2: Run — FAIL** (`npx vitest run src/components/brand/__tests__/brand.test.tsx`).
 
-- [ ] **Step 3: Implement.** `Wordmark` = an inline SVG "M" mark in `currentColor` + styled "angeki"; wrapper sets `text-brand-red`/`text-white` by variant and an `aria-label="Mangeki"`. `Avatar` = `next/image` (unoptimized) rounded. `AppBadges` = two dark rounded badges with the store name + "DISPONIBLE EN"/"Descárgalo en el" caption. `SocialIcons` = three `aria-label`ed round buttons with simple inline SVGs. Match screenshot styling (see `landing-01-hero`, `landing-04-newsletter-footer`).
+- [ ] **Step 3: Implement.** `Wordmark` = `next/image` of `/brand/mangeki_logo.svg` (unoptimized) with `alt="Mangeki"`; `variant='white'` adds `brightness-0 invert`. `Avatar` = `next/image` (unoptimized) rounded. `AppBadges` = two dark rounded badges with the store name + "DISPONIBLE EN"/"Descárgalo en el" caption. `SocialIcons` = three `aria-label`ed round buttons with simple inline SVGs. Match screenshot styling (see `landing-01-hero`, `landing-04-newsletter-footer`).
 
 - [ ] **Step 4: Run — PASS.**
 - [ ] **Step 5: Commit** — `feat: add brand placeholder components (wordmark, avatar, badges, social)`
