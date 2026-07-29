@@ -16,13 +16,14 @@ describe('AutoresPage', () => {
     const authors = allAuthors();
     expect(authors.length).toBeGreaterThan(0);
 
+    // Match by unique href, not by name: author names can share substrings
+    // (e.g. "ONE" is a substring of "NEMONE"), which makes name-based queries
+    // ambiguous as the catalog grows.
+    const hrefs = screen
+      .getAllByRole('link')
+      .map((el) => el.getAttribute('href'));
     for (const author of authors) {
-      const link = screen.getByRole('link', {
-        name: new RegExp(
-          author.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
-        ),
-      });
-      expect(link).toHaveAttribute('href', `/autores/${author.id}`);
+      expect(hrefs).toContain(`/autores/${author.id}`);
     }
   });
 

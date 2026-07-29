@@ -80,15 +80,24 @@ async function fetchJson(url, attempt = 0) {
 }
 
 async function main() {
-  // Required pages: top manga (has enough entries to satisfy the >=50 guard on
-  // its own). Optional pages: manhwa/manhua search endpoints — best-effort, so a
-  // transient outage on Jikan's search endpoint doesn't sink the whole seed.
+  // Jikan currently returns HTTP 504 for ANY filtered query (`type=` and
+  // `filter=` alike, on both /manga and /top/manga), so we cannot target
+  // manhwa/manhua directly. The only healthy endpoint is the plain ranked
+  // `/top/manga?page=N`, where manhwa/manhua are scattered throughout. We pull
+  // many pages so they accumulate naturally: pages 1-4 required (well past the
+  // >=50 guard), pages 5-8 best-effort enrichment for a richer manhwa/manhua mix.
   const requiredUrls = [
     `${API}/top/manga?page=1`,
     `${API}/top/manga?page=2`,
     `${API}/top/manga?page=3`,
+    `${API}/top/manga?page=4`,
   ];
-  const optionalUrls = [`${API}/manga?type=manhwa`, `${API}/manga?type=manhua`];
+  const optionalUrls = [
+    `${API}/top/manga?page=5`,
+    `${API}/top/manga?page=6`,
+    `${API}/top/manga?page=7`,
+    `${API}/top/manga?page=8`,
+  ];
 
   const rawEntries = [];
   const urls = [...requiredUrls, ...optionalUrls];
