@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mangeki
 
-## Getting Started
+Mangeki is a Spanish-language manga / manhwa / manhua reader showcase built for the
+Vaiven portfolio. It is a static Next.js + Tailwind CSS v4 site that demonstrates a
+catalog browsing and library experience: demo authentication and the user library are
+persisted entirely in the browser via `localStorage`, and the reader itself is
+intentionally disabled — this is a front-end showcase, not a production reading service.
 
-First, run the development server:
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install      # install dependencies
+npm run dev      # start the local dev server (http://localhost:3000)
+npm run seed     # generate/refresh the catalog seed data
+npm test         # run the Vitest suite
+npm run build    # produce the static export
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment & design
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Deployment (GitHub Pages): see [`docs/DEPLOY.md`](docs/DEPLOY.md).
+- Design and specifications: see [`docs/superpowers/specs/`](docs/superpowers/specs/).

@@ -3,9 +3,10 @@ import Image from 'next/image';
 export interface WordmarkProps {
   variant?: 'color' | 'white';
   className?: string;
+  priority?: boolean;
 }
 
-export function Wordmark({ variant = 'color', className = '' }: WordmarkProps) {
+export function Wordmark({ variant = 'color', className = '', priority = false }: WordmarkProps) {
   const filter = variant === 'white' ? 'brightness-0 invert' : '';
   return (
     <Image
@@ -14,7 +15,7 @@ export function Wordmark({ variant = 'color', className = '' }: WordmarkProps) {
       width={274}
       height={69}
       unoptimized
-      priority
+      priority={priority}
       className={`${filter} ${className}`.trim()}
     />
   );

@@ -26,7 +26,7 @@ export function Header() {
       <div className="border-b border-slate-100 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3">
           <Link href="/" aria-label="Mangeki inicio" className="shrink-0">
-            <Wordmark className="h-8 w-auto" />
+            <Wordmark className="h-8 w-auto" priority />
           </Link>
 
           <nav
