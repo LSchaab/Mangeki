@@ -1,0 +1,546 @@
+[
+  {
+    "id": "miura-kentarou",
+    "name": "Miura, Kentarou",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "2"
+    ]
+  },
+  {
+    "id": "studio-gaga",
+    "name": "Studio Gaga",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "2"
+    ]
+  },
+  {
+    "id": "araki-hirohiko",
+    "name": "Araki, Hirohiko",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "1706"
+    ]
+  },
+  {
+    "id": "inoue-takehiko",
+    "name": "Inoue, Takehiko",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "656",
+      "51",
+      "657"
+    ]
+  },
+  {
+    "id": "yoshikawa-eiji",
+    "name": "Yoshikawa, Eiji",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "656"
+    ]
+  },
+  {
+    "id": "oda-eiichiro",
+    "name": "Oda, Eiichiro",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "13"
+    ]
+  },
+  {
+    "id": "urasawa-naoki",
+    "name": "Urasawa, Naoki",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "1",
+      "3"
+    ]
+  },
+  {
+    "id": "moon-back-kyung",
+    "name": "Moon, Back-kyung",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "147272"
+    ]
+  },
+  {
+    "id": "kim-hyunsoo",
+    "name": "Kim, Hyunsoo",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "147272"
+    ]
+  },
+  {
+    "id": "yukimura-makoto",
+    "name": "Yukimura, Makoto",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "642"
+    ]
+  },
+  {
+    "id": "arakawa-hiromu",
+    "name": "Arakawa, Hiromu",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "25"
+    ]
+  },
+  {
+    "id": "inoue-kenji",
+    "name": "Inoue, Kenji",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "70345"
+    ]
+  },
+  {
+    "id": "yoshioka-kimitake",
+    "name": "Yoshioka, Kimitake",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "70345"
+    ]
+  },
+  {
+    "id": "hara-yasuhisa",
+    "name": "Hara, Yasuhisa",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "16765"
+    ]
+  },
+  {
+    "id": "ichikawa-haruko",
+    "name": "Ichikawa, Haruko",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "44489"
+    ]
+  },
+  {
+    "id": "asano-inio",
+    "name": "Asano, Inio",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "4632"
+    ]
+  },
+  {
+    "id": "kuzumi-taiyou",
+    "name": "Kuzumi, Taiyou",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "133431"
+    ]
+  },
+  {
+    "id": "natsumi-kei",
+    "name": "Natsumi, Kei",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "34053"
+    ]
+  },
+  {
+    "id": "ryukishi07",
+    "name": "Ryukishi07",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "34053",
+      "23900"
+    ]
+  },
+  {
+    "id": "kajiwara-ikki",
+    "name": "Kajiwara, Ikki",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "1303"
+    ]
+  },
+  {
+    "id": "chiba-tetsuya",
+    "name": "Chiba, Tetsuya",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "1303"
+    ]
+  },
+  {
+    "id": "azuma-kiyohiko",
+    "name": "Azuma, Kiyohiko",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "104"
+    ]
+  },
+  {
+    "id": "akasaka-aka",
+    "name": "Akasaka, Aka",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "90125"
+    ]
+  },
+  {
+    "id": "yamada-kanehito",
+    "name": "Yamada, Kanehito",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "126287"
+    ]
+  },
+  {
+    "id": "abe-tsukasa",
+    "name": "Abe, Tsukasa",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "126287"
+    ]
+  },
+  {
+    "id": "ooima-yoshitoki",
+    "name": "Ooima, Yoshitoki",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "56805"
+    ]
+  },
+  {
+    "id": "umino-chica",
+    "name": "Umino, Chica",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "1224"
+    ]
+  },
+  {
+    "id": "furudate-haruichi",
+    "name": "Furudate, Haruichi",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "35243"
+    ]
+  },
+  {
+    "id": "fujisawa-tooru",
+    "name": "Fujisawa, Tooru",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "336"
+    ]
+  },
+  {
+    "id": "mo-xiang-tong-xiu",
+    "name": "Mo Xiang Tong Xiu",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "140765"
+    ]
+  },
+  {
+    "id": "starember",
+    "name": "STARember",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "140765"
+    ]
+  },
+  {
+    "id": "sakamoto-shinichi",
+    "name": "Sakamoto, Shinichi",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "7375"
+    ]
+  },
+  {
+    "id": "gomyang",
+    "name": "Gomyang",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "178182"
+    ]
+  },
+  {
+    "id": "kusanagi-mizuho",
+    "name": "Kusanagi, Mizuho",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "21525"
+    ]
+  },
+  {
+    "id": "yazawa-ai",
+    "name": "Yazawa, Ai",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "28"
+    ]
+  },
+  {
+    "id": "wanan",
+    "name": "Wanan",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "147769"
+    ]
+  },
+  {
+    "id": "kui-ryouko",
+    "name": "Kui, Ryouko",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "85781"
+    ]
+  },
+  {
+    "id": "miyazaki-hayao",
+    "name": "Miyazaki, Hayao",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "651"
+    ]
+  },
+  {
+    "id": "tsurumaikada",
+    "name": "Tsurumaikada",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "129621"
+    ]
+  },
+  {
+    "id": "fukuda-ikumi",
+    "name": "Fukuda, Ikumi",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "132678"
+    ]
+  },
+  {
+    "id": "mikami-saka",
+    "name": "Mikami, Saka",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "144267"
+    ]
+  },
+  {
+    "id": "togashi-yoshihiro",
+    "name": "Togashi, Yoshihiro",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "26"
+    ]
+  },
+  {
+    "id": "taguchi-shouichi",
+    "name": "Taguchi, Shouichi",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "100448"
+    ]
+  },
+  {
+    "id": "miaki-sugaru",
+    "name": "Miaki, Sugaru",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "100448"
+    ]
+  },
+  {
+    "id": "koyama-chuuya",
+    "name": "Koyama, Chuuya",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "14483"
+    ]
+  },
+  {
+    "id": "sakura-amyuu",
+    "name": "Sakura, Amyuu",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "45143"
+    ]
+  },
+  {
+    "id": "morikawa-george",
+    "name": "Morikawa, George",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "7"
+    ]
+  },
+  {
+    "id": "shirahama-kamome",
+    "name": "Shirahama, Kamome",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "100035"
+    ]
+  },
+  {
+    "id": "tsukumizu",
+    "name": "Tsukumizu",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "72467"
+    ]
+  },
+  {
+    "id": "yuama",
+    "name": "Yuama",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "128365"
+    ]
+  },
+  {
+    "id": "tsukushi-akihito",
+    "name": "Tsukushi, Akihito",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "91941"
+    ]
+  },
+  {
+    "id": "urushibara-yuki",
+    "name": "Urushibara, Yuki",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "418"
+    ]
+  },
+  {
+    "id": "sakuishi-harold",
+    "name": "Sakuishi, Harold",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "145"
+    ]
+  },
+  {
+    "id": "sako-toshio",
+    "name": "Sako, Toshio",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "9982"
+    ]
+  },
+  {
+    "id": "mizuno-eita",
+    "name": "Mizuno, Eita",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "23900"
+    ]
+  },
+  {
+    "id": "yamashita-tomoko",
+    "name": "Yamashita, Tomoko",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "118804"
+    ]
+  },
+  {
+    "id": "midorikawa-yuki",
+    "name": "Midorikawa, Yuki",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "1859"
+    ]
+  },
+  {
+    "id": "murata-yusuke",
+    "name": "Murata, Yusuke",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "44347"
+    ]
+  },
+  {
+    "id": "one",
+    "name": "ONE",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "44347"
+    ]
+  },
+  {
+    "id": "jixksee",
+    "name": "Jixksee",
+    "bio": "",
+    "photoUrl": "",
+    "titleIds": [
+      "178671"
+    ]
+  }
+]
