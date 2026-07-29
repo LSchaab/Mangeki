@@ -4,12 +4,15 @@ Project-context file for Claude Code. Read this first.
 
 ## What Mangeki is
 
-**Mangeki** is a manga/manhwa-reader web app built as a **showcase piece for the Vaiven
-studio portfolio** (Vaiven is Lourdes Schaab's studio brand). It is a **hybrid demo**:
-the browsing/discovery UI is fully built and polished, while actual *reading* is
-intentionally disabled (`🔒 Read — Coming soon`). A focused set of features genuinely
-works — demo login, a personal library, and adding your own titles — all persisted in the
-browser via `localStorage`, so there is **no backend**.
+**Mangeki** is a manga/manhwa/manhua-reader web app built as a **showcase piece for the
+Vaiven studio portfolio** (Vaiven is Lourdes Schaab's studio brand). It is a **hybrid
+demo**: the browsing/discovery UI is fully built and polished (matching the landing
+screenshots in `resources/screenshots/`), while actual *reading* is intentionally disabled
+(`🔒 Leer — Próximamente`). A focused set of features genuinely works — demo login, a
+personal library ("Mi Perfil"), and adding your own titles — all persisted in the browser
+via `localStorage`, so there is **no backend**.
+
+**UI language is Spanish.** Catalog title names stay in their original language.
 
 Full design spec: `docs/superpowers/specs/2026-07-27-mangeki-design.md` (source of truth).
 
@@ -26,23 +29,30 @@ Full design spec: `docs/superpowers/specs/2026-07-27-mangeki-design.md` (source 
 
 - **No backend, no external services.** Auth, library, and user-added titles live in
   `localStorage` only. Do not introduce Supabase/Vercel/any hosted DB or auth.
-- **The reader is disabled by design.** The "Read" control is a visibly disabled
-  `🔒 Read — Coming soon` button. Do not build a functional reader.
+- **The reader is disabled by design.** The "Leer" control is a visibly disabled
+  `🔒 Leer — Próximamente` button. Do not build a functional reader.
 - **Auth is demo-grade, not secure.** Passwords sit in the browser in plain form; this is
-  intentional for a portfolio demo. A pre-seeded `demo` / `demo1234` account exists and
+  intentional for a portfolio demo. A pre-seeded `otaku123` / `demo1234` account exists and
   the login page shows a disclaimer with those credentials.
+- **Categories:** data/filters use `manga` / `manhwa` / `manhua`. `Cómic` is a
+  newsletter-only checkbox with no seeded titles. The newsletter is decorative (no backend).
 - **Static export only.** Must build with `output: 'export'` (GitHub Pages has no server).
   Dynamic routes use `generateStaticParams`; images are `unoptimized`. No server-side
   code, API routes, or runtime data fetching.
 - **Catalog is seeded, not live.** Never fetch the catalog at runtime — regenerate the
   JSON via the seed script instead.
 
-## Pages (sitemap)
+## Pages (sitemap — Spanish routes)
 
-Home (`/`, incl. "Our Selection from [Category]") · Catalog (`/catalog`) ·
-Title Detail (`/title/[id]`) · Authors (`/authors`, `/authors/[id]`) ·
-Genres (`/genres`, `/genres/[slug]`) · My Library (`/library`, auth-gated) ·
-Login (`/login`) · Sign-up (`/signup`) · About (`/about`) · 404 · Legal · Contact
+Nav: **Home** (`/`) · **Nosotros** (`/nosotros`) · **Nuevo & Popular**
+(`/nuevo-y-popular`) · **Autores** (`/autores`, `/autores/[id]`).
+Also: **Catálogo** (`/catalogo`) · **Géneros** (`/generos`, `/generos/[slug]`) ·
+**Título detalle** (`/titulo/[id]`) · **Mi Perfil** (`/mi-perfil`, auth-gated) ·
+**Iniciar sesión** (`/login`) · **Registro** (`/registro`) · **Legal** (`/legal`) ·
+**Contacto** (`/contacto`) · 404.
+
+The **Home** page is a full landing (hero carousel, red description block, values band,
+Tendencias & Actualizaciones carousels, Top Autores, newsletter, footer) — see spec §8.4.
 
 ## `localStorage` schema (namespaced `mangeki.*`)
 
