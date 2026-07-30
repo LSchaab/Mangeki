@@ -24,14 +24,19 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # Node 24: Vitest 4's rolldown native binding requires a newer Node
+          # than 20 (on 20, npm skips the native optional dep and falls back to
+          # the wasm binding, which cannot spawn test workers in CI).
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Seed catalog
-        run: npm run seed || echo "Seed failed; using committed catalog JSON."
+      # Catalog is committed (src/data/*.json) and is the source of truth. We do
+      # NOT re-seed in CI: the Jikan API is flaky (frequent 504s) and seeding at
+      # deploy time makes builds nondeterministic. Refresh the catalog locally
+      # with `npm run seed` and commit the result.
 
       - name: Run tests
         run: npm test
