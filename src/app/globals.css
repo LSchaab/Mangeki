@@ -2,18 +2,20 @@
 @config "../../tailwind.config.ts";
 
 @theme {
-  --color-brand-blue: #556FA0;
-  --color-brand-red: #E7403B;
-  --color-brand-red-light: #FFDADA;
-  --color-brand-navy: #1F2D52;
+  --color-brand-blue: #576FA7;       /* Azul Celestial */
+  --color-brand-red: #FF3E37;        /* Rojo Coral */
+  --color-brand-red-light: #FA9F9E;  /* Rosa Sakura */
+  --color-brand-sakura: #FA9F9E;     /* Rosa Sakura (alias) */
+  --color-brand-navy: #192B56;       /* Azul Medianoche */
+  --color-brand-charcoal: #151515;   /* Negro Carbón */
 
   --font-display: var(--font-quicksand), sans-serif;
   --font-body: var(--font-quicksand), sans-serif;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff;             /* Blanco Puro */
+  --foreground: #151515;             /* Negro Carbón */
 }
 
 body {

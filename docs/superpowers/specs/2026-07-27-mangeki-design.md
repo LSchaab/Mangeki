@@ -188,13 +188,14 @@ committed landing screenshots.
 
 ### 8.1 Color tokens (Tailwind theme)
 
-| Token | Hex | Usage |
-|-------|-----|-------|
-| `brand-blue` | `#556FA0` | Hero & newsletter section backgrounds. |
-| `brand-red` | `#E7403B` | Primary actions, logo mark, "red circle", the red band, footer. |
-| `brand-red-light` | `#FFDADA` | "Top Autores" section, values band, soft accents. |
-| `brand-navy` | `#1F2D52` | Primary text, icon outlines, "Leer más" buttons. |
-| `surface` | `#FFFFFF` | Page background, cards, header. |
+| Token | Hex | Nombre | Usage |
+|-------|-----|--------|-------|
+| `brand-blue` | `#576FA7` | Azul Celestial | Hero & newsletter section backgrounds. |
+| `brand-red` | `#FF3E37` | Rojo Coral | Primary actions, logo mark, "red circle", the red band, footer. |
+| `brand-red-light` / `brand-sakura` | `#FA9F9E` | Rosa Sakura | "Top Autores" section, values band, soft accents. |
+| `brand-navy` | `#192B56` | Azul Medianoche | Primary text, icon outlines, "Leer más" buttons. |
+| `brand-charcoal` | `#151515` | Negro Carbón | Body foreground text. |
+| `surface` | `#FFFFFF` | Blanco Puro | Page background, cards, header. |
 
 ### 8.2 Assets
 
@@ -202,7 +203,7 @@ Move `resources/*` → `public/brand/`. Serve from `/brand/...`.
 
 | File | Role |
 |------|------|
-| `mangeki_logo.svg` | Official Mangeki wordmark (274×69, navy `#1F2D54`) — header & (white-filtered) red/blue sections. |
+| `mangeki_logo.svg` | Official Mangeki wordmark (274×69, navy `#192B56`) — header & (white-filtered) red/blue sections. |
 | `hero_image.png` | Hero collage (girl + headphones + red circle). |
 | `circles_svg.svg` | Seigaiha circle motif — cropped SVG on colored backgrounds (red block, footer, author cards). |
 | `cloud_svg.svg` | Cloud/wave motif — available for section decoration. |
