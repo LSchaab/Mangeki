@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import { Poppins, Inter } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { LibraryProvider } from "@/context/LibraryContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
   display: "swap",
 });
 
@@ -33,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${poppins.variable} ${inter.variable} h-full antialiased`}
+      className={`${quicksand.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <AuthProvider>

@@ -271,8 +271,8 @@ Both show the cover, a rounded **X/10** score badge (top-right), and the title; 
 
 ### 8.6 Typography
 
-Bold, rounded display headings; clean sans body. Use a strong Google sans via `next/font`
-(e.g. Poppins for headings, Inter for body) approximating the mockups.
+The site uses **Quicksand** (Google Fonts, via `next/font`) for both display headings and
+body — a rounded geometric sans that matches the rounded Mangeki wordmark.
 
 ### 8.7 Categories
 
