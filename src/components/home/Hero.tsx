@@ -34,22 +34,22 @@ export function Hero() {
 
   return (
     <section className="relative bg-brand-blue text-white overflow-hidden">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-6 py-10 md:flex-row md:gap-12 md:py-14">
-        {/* Left: hero collage */}
-        <div className="relative w-full max-w-md md:w-1/2">
-          <Image
-            src="/brand/hero_image.png"
-            alt="Universo Mangeki"
-            width={640}
-            height={720}
-            unoptimized
-            priority
-            className="h-auto w-full object-contain"
-          />
-        </div>
+      {/* No max-width cap here on purpose: the artwork's own blue fill matches
+          bg-brand-blue exactly, so letting this row run edge-to-edge is what
+          makes it read as one continuous banner instead of a boxed graphic. */}
+      <div className="flex flex-col items-center gap-8 px-6 py-10 lg:flex-row lg:items-center lg:gap-10 lg:px-10 lg:py-14">
+        <Image
+          src="/brand/hero_image.png"
+          alt="Universo Mangeki"
+          width={1920}
+          height={1135}
+          unoptimized
+          priority
+          className="h-auto w-full max-w-2xl object-contain lg:h-[480px] lg:w-auto lg:max-w-none xl:h-[560px]"
+        />
 
-        {/* Right: tagline stack */}
-        <div className="flex w-full flex-col items-center text-center md:w-1/2 md:items-start md:text-left">
+        {/* Tagline stack */}
+        <div className="flex w-full flex-col items-center text-center lg:w-auto lg:max-w-md lg:items-start lg:text-left">
           <p className="text-xl font-semibold font-display md:text-2xl">
             {slide.eyebrow}
           </p>
