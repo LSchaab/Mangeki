@@ -48,3 +48,10 @@ export interface User {
   email: string;
   password: string;
 }
+
+export interface FeaturedAuthor {
+  id: string;
+  name: string;
+  photoUrl: string;
+  notableWork: string;
+}

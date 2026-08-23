@@ -16,10 +16,12 @@ function trimTrailingZero(value: number): string {
 }
 
 /**
- * Renders a numeric score as "n/10" (rounded to the nearest integer),
- * or an em dash "—" when the score is missing.
+ * Renders a numeric score as "n.n/10" (one decimal place), or an em dash
+ * "—" when the score is missing. One decimal keeps the ratings visibly
+ * distinct — rounding to an integer collapses the catalog's 8.5–9.5 range
+ * into a wall of identical "9/10" badges.
  */
 export function scoreOutOf10(score: number | null): string {
   if (score === null) return '—';
-  return `${Math.round(score)}/10`;
+  return `${score.toFixed(1)}/10`;
 }

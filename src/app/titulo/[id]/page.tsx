@@ -76,12 +76,9 @@ export default async function TituloPage({
               {authors.map((author, i) => (
                 <span key={author.id}>
                   {i > 0 && ', '}
-                  <Link
-                    href={`/autores/${author.id}`}
-                    className="font-medium text-brand-red hover:underline"
-                  >
+                  <span className="font-medium text-brand-red">
                     {author.name}
-                  </Link>
+                  </span>
                 </span>
               ))}
             </p>

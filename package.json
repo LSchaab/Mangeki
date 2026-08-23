@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "node scripts/seed.mjs",
+    "seed:authors": "node scripts/seed-authors.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },

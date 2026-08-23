@@ -12,7 +12,7 @@ import {
   popularTitles,
   newestTitles,
   trendingTitles,
-  topAuthors,
+  featuredAuthors,
 } from '@/data/catalog';
 import { viewsLabel, scoreOutOf10 } from '@/lib/format';
 
@@ -56,13 +56,14 @@ describe('catalog accessors', () => {
     }
   });
 
-  it('topAuthors(6) is capped at 6 and sorted by title count desc', () => {
-    const rows = topAuthors(6);
-    expect(rows.length).toBeLessThanOrEqual(6);
-    for (let i = 1; i < rows.length; i++) {
-      expect(rows[i - 1].titleIds.length).toBeGreaterThanOrEqual(
-        rows[i].titleIds.length,
-      );
+  it('featuredAuthors returns 6 curated mangaka with the expected shape', () => {
+    const rows = featuredAuthors();
+    expect(rows).toHaveLength(6);
+    for (const row of rows) {
+      expect(typeof row.id).toBe('string');
+      expect(typeof row.name).toBe('string');
+      expect(typeof row.photoUrl).toBe('string');
+      expect(typeof row.notableWork).toBe('string');
     }
   });
 
@@ -89,8 +90,9 @@ describe('format helpers', () => {
     expect(viewsLabel(1_500_000)).toBe('1.5M');
   });
 
-  it('scoreOutOf10 rounds to n/10', () => {
-    expect(scoreOutOf10(9.47)).toBe('9/10');
+  it('scoreOutOf10 formats to one decimal n.n/10', () => {
+    expect(scoreOutOf10(9.47)).toBe('9.5/10');
+    expect(scoreOutOf10(8.47)).toBe('8.5/10');
     expect(scoreOutOf10(null)).toBe('—');
   });
 });

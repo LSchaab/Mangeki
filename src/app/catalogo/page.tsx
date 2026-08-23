@@ -1,8 +1,9 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Image from 'next/image';
 import type { TitleType } from '@/data/types';
-import { allGenres, allTitles } from '@/data/catalog';
+import { allAuthors, allGenres, allTitles } from '@/data/catalog';
 import { TitleGrid } from '@/components/TitleGrid';
 
 type TypeFilter = 'all' | TitleType;
@@ -37,20 +38,27 @@ const selectClass =
 
 export default function CatalogoPage() {
   const genres = allGenres();
+  const authors = useMemo(
+    () => [...allAuthors()].sort((a, b) => a.name.localeCompare(b.name)),
+    [],
+  );
   const [type, setType] = useState<TypeFilter>('all');
   const [genre, setGenre] = useState<string>('');
+  const [author, setAuthor] = useState<string>('');
+  const [query, setQuery] = useState<string>('');
 
   const titles = useMemo(() => allTitles(), []);
 
-  const filtered = useMemo(
-    () =>
-      titles.filter(
-        (t) =>
-          (type === 'all' || t.type === type) &&
-          (genre === '' || t.genres.includes(genre)),
-      ),
-    [titles, type, genre],
-  );
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return titles.filter(
+      (t) =>
+        (type === 'all' || t.type === type) &&
+        (genre === '' || t.genres.includes(genre)) &&
+        (author === '' || t.authorIds.includes(author)) &&
+        (q === '' || t.title.toLowerCase().includes(q)),
+    );
+  }, [titles, type, genre, author, query]);
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-10">
@@ -62,6 +70,29 @@ export default function CatalogoPage() {
           Explora todos nuestros títulos. Filtra por tipo y género.
         </p>
       </header>
+
+      <div className="relative mb-6 max-w-md">
+        <label htmlFor="catalogo-buscar" className="sr-only">
+          Buscar
+        </label>
+        <Image
+          src="/brand/search_icon.svg"
+          alt=""
+          aria-hidden="true"
+          width={18}
+          height={18}
+          unoptimized
+          className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2"
+        />
+        <input
+          id="catalogo-buscar"
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Buscar…"
+          className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-4 text-sm text-brand-navy shadow-sm outline-none placeholder:text-slate-400 focus:border-brand-red"
+        />
+      </div>
 
       <div className="mb-6 flex flex-wrap items-center gap-4">
         <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por tipo">
@@ -100,6 +131,27 @@ export default function CatalogoPage() {
             {genres.map((g) => (
               <option key={g.slug} value={g.slug}>
                 {g.name}
+              </option>
+            ))}
+          </select>
+          <Chevron />
+        </div>
+
+        <div className="relative">
+          <label htmlFor="catalogo-autor" className="sr-only">
+            Autor
+          </label>
+          <select
+            id="catalogo-autor"
+            aria-label="Autor"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            className={selectClass}
+          >
+            <option value="">Todos los autores</option>
+            {authors.map((a) => (
+              <option key={a.id} value={a.id}>
+                {a.name}
               </option>
             ))}
           </select>

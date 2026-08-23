@@ -22,12 +22,12 @@ describe('Header', () => {
 
   it('renders the primary navigation links', () => {
     renderHeader();
+    expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Catálogo' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Nosotros' })).toBeInTheDocument();
     expect(
       screen.getByRole('link', { name: 'Nuevo & Popular' }),
     ).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Nosotros' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Autores' })).toBeInTheDocument();
   });
 
   it('links to /login when logged out', () => {
@@ -38,8 +38,10 @@ describe('Header', () => {
     expect(loginLinks.length).toBeGreaterThan(0);
   });
 
-  it('renders a "Buscar…" search input in the welcome bar', () => {
+  it('does not render the notification bell when logged out', () => {
     renderHeader();
-    expect(screen.getByPlaceholderText('Buscar…')).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Notificaciones' }),
+    ).not.toBeInTheDocument();
   });
 });

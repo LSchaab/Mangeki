@@ -1,7 +1,8 @@
-import type { Title, Author, Genre, TitleType } from '@/data/types';
+import type { Title, Author, Genre, TitleType, FeaturedAuthor } from '@/data/types';
 import titlesJson from '@/data/titles.json';
 import authorsJson from '@/data/authors.json';
 import genresJson from '@/data/genres.json';
+import topAuthorsJson from '@/data/topAuthors.json';
 
 const titles = titlesJson as Title[];
 const authors = authorsJson as Author[];
@@ -69,8 +70,7 @@ export function trendingTitles(n = 12): Title[] {
     .slice(0, n);
 }
 
-export function topAuthors(n = 6): Author[] {
-  return [...authors]
-    .sort((a, b) => b.titleIds.length - a.titleIds.length)
-    .slice(0, n);
+// Curated showcase of famous mangaka for the Home "Top Autores" band.
+export function featuredAuthors(): FeaturedAuthor[] {
+  return topAuthorsJson as FeaturedAuthor[];
 }

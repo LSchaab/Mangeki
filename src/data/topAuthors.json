@@ -1,0 +1,38 @@
+[
+  {
+    "id": "eiichiro-oda",
+    "name": "Eiichiro Oda",
+    "photoUrl": "https://cdn.myanimelist.net/images/voiceactors/2/30751.jpg",
+    "notableWork": "One Piece"
+  },
+  {
+    "id": "kentaro-miura",
+    "name": "Kentaro Miura",
+    "photoUrl": "https://cdn.myanimelist.net/images/voiceactors/1/52320.jpg",
+    "notableWork": "Berserk"
+  },
+  {
+    "id": "hirohiko-araki",
+    "name": "Hirohiko Araki",
+    "photoUrl": "https://cdn.myanimelist.net/images/voiceactors/3/20335.jpg",
+    "notableWork": "JoJo's Bizarre Adventure"
+  },
+  {
+    "id": "akira-toriyama",
+    "name": "Akira Toriyama",
+    "photoUrl": "https://cdn.myanimelist.net/images/voiceactors/2/40040.jpg",
+    "notableWork": "Dragon Ball"
+  },
+  {
+    "id": "kohei-horikoshi",
+    "name": "Kohei Horikoshi",
+    "photoUrl": "https://cdn.myanimelist.net/images/voiceactors/2/19467.jpg",
+    "notableWork": "My Hero Academia"
+  },
+  {
+    "id": "tatsuki-fujimoto",
+    "name": "Tatsuki Fujimoto",
+    "photoUrl": "https://cdn.myanimelist.net/images/voiceactors/2/61876.jpg",
+    "notableWork": "Chainsaw Man"
+  }
+]

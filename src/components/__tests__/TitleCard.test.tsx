@@ -13,7 +13,7 @@ const fixture: Title = {
   status: 'ongoing',
   synopsis: 'Un romance moderno.',
   coverUrl: '/covers/alguien-como-tu.jpg',
-  score: 9,
+  score: 9.2,
   chapters: 42,
   views: 160_000,
   latestChapter: 42,
@@ -29,9 +29,9 @@ describe('TitleCard', () => {
     expect(link).toHaveAttribute('href', '/titulo/2');
   });
 
-  it('shows the score badge as X/10', () => {
+  it('shows the score badge as X.X/10', () => {
     render(<TitleCard title={fixture} />);
-    expect(screen.getByText('9/10')).toBeInTheDocument();
+    expect(screen.getByText('9.2/10')).toBeInTheDocument();
   });
 
   it('shows views footer in the views variant', () => {
