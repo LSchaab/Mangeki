@@ -6,8 +6,9 @@ export default function ContactoPage() {
       </h1>
       <p className="mt-6 text-base leading-relaxed text-slate-600">
         ¿Tienes preguntas, comentarios o quieres saber más sobre el proyecto?
-        Mangeki es obra del estudio Vaiven. Puedes conocer más sobre nuestro
-        trabajo y encontrar las vías de contacto en el portafolio de Vaiven.
+        Mangeki es un proyecto de Victoria Bettaglio y Lourdes Schaab. Puedes
+        conocer más sobre nuestro trabajo y encontrar las vías de contacto en el
+        portafolio.
       </p>
       <p className="mt-4 text-base leading-relaxed text-slate-600">
         Visítanos en{' '}

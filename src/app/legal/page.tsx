@@ -5,7 +5,7 @@ export default function LegalPage() {
         Legal
       </h1>
       <p className="mt-6 text-base leading-relaxed text-slate-600">
-        Mangeki es un proyecto de portafolio del estudio Vaiven, con fines
+        Mangeki es un proyecto de Victoria Bettaglio y Lourdes Schaab, con fines
         demostrativos y sin ánimo de lucro.
       </p>
 

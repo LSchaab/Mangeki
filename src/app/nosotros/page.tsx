@@ -6,37 +6,40 @@ export default function NosotrosPage() {
       </h1>
 
       <p className="mt-6 text-base leading-relaxed text-slate-600">
-        <strong className="text-brand-navy">Mangeki</strong> es una experiencia
-        de lectura de <strong>manga</strong>, <strong>manhwa</strong> y{' '}
-        <strong>manhua</strong> creada por el estudio{' '}
-        <strong className="text-brand-navy">Vaiven</strong>. Nace como un
-        proyecto de portafolio: una interfaz cuidada, en español, para descubrir
-        y organizar historias de todo el mundo.
+        <strong className="text-brand-navy">Mangeki</strong> es un proyecto
+        impulsado por{' '}
+        <strong className="text-brand-navy">Victoria Bettaglio</strong> y{' '}
+        <strong className="text-brand-navy">Lourdes Schaab</strong>. Nació de una
+        frustración que compartimos con muchos lectores: casi todas las
+        plataformas de manga tienen la misma limitación —{' '}
+        <em>no encuentro mi manga, manhwa o manhua</em>.
       </p>
 
       <section className="mt-10">
         <h2 className="font-display text-xl font-bold text-brand-navy">
-          Nuestra misión
+          Por qué Mangeki
         </h2>
         <p className="mt-3 text-base leading-relaxed text-slate-600">
-          Queremos que sumergirte en el fascinante mundo del manga sea sencillo
-          y hermoso. Con una biblioteca que abarca diversos géneros —desde
-          acción hasta romance— Mangeki busca acercarte nuevas historias y la
-          riqueza cultural que hay detrás de cada obra, con un diseño que pone
-          el foco en la lectura.
+          Creamos Mangeki para que nadie se quede con las ganas de leer una
+          historia solo porque no está en el catálogo. La idea es que{' '}
+          <strong className="text-brand-navy">todos puedan aportar</strong> esas
+          obras que no encontraron en otras apps, y que la comunidad haga crecer
+          la biblioteca con <strong>mangas</strong>, <strong>manhwas</strong> y{' '}
+          <strong>manhuas</strong> de todo el mundo.
         </p>
       </section>
 
       <section className="mt-8">
         <h2 className="font-display text-xl font-bold text-brand-navy">
-          La historia
+          Un manager de lecturas
         </h2>
         <p className="mt-3 text-base leading-relaxed text-slate-600">
-          Mangeki empezó como un ejercicio de diseño e ingeniería dentro de
-          Vaiven: construir un catálogo real, un sistema de marca coherente y
-          una experiencia de usuario pulida de principio a fin. Hoy puedes
-          explorar el catálogo, seguir a tus autores favoritos y armar tu propia
-          biblioteca.
+          Más que un lector, Mangeki es un{' '}
+          <strong className="text-brand-navy">gestor de tus lecturas</strong>:
+          un lugar para llevar el registro de{' '}
+          <strong>cuántos y cuáles</strong> manhwas, mangas y manhuas ya leíste,
+          armar tu propia biblioteca y no volver a perder el hilo de lo que estás
+          siguiendo.
         </p>
         <p className="mt-3 text-base leading-relaxed text-slate-600">
           La lectura de capítulos dentro de la app está{' '}
