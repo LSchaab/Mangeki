@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Wordmark } from '@/components/brand/Wordmark';
@@ -11,12 +11,44 @@ const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'Home', href: '/' },
   { label: 'Catálogo', href: '/catalogo' },
   { label: 'Nosotros', href: '/nosotros' },
-  { label: 'Nuevo & Popular', href: '/nuevo-y-popular' },
 ];
+
+// Demo notifications — this is a portfolio showcase with no backend, so the
+// bell just surfaces a few canned items so the interaction is visible.
+const NOTIFICATIONS: { id: string; title: string; body: string; time: string }[] =
+  [
+    {
+      id: 'n2',
+      title: '¡Bienvenido a Mangeki!',
+      body: 'Explora el catálogo y arma tu lista de leídos.',
+      time: 'Ayer',
+    },
+    {
+      id: 'n3',
+      title: 'Tu autor favorito publicó algo',
+      body: 'Kentaro Miura aparece en las tendencias de la semana.',
+      time: 'Hace 3 días',
+    },
+  ];
 
 export function Header() {
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [notifOpen, setNotifOpen] = useState(false);
+  const [notifSeen, setNotifSeen] = useState(false);
+  const notifRef = useRef<HTMLDivElement>(null);
+
+  // Close the notifications dropdown when clicking outside of it.
+  useEffect(() => {
+    if (!notifOpen) return;
+    const onPointerDown = (e: MouseEvent) => {
+      if (notifRef.current && !notifRef.current.contains(e.target as Node)) {
+        setNotifOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onPointerDown);
+    return () => document.removeEventListener('mousedown', onPointerDown);
+  }, [notifOpen]);
 
   return (
     <header className="w-full">
@@ -29,7 +61,7 @@ export function Header() {
 
           <nav
             aria-label="Navegación principal"
-            className="hidden flex-1 items-center gap-8 md:flex"
+            className="hidden flex-1 items-center justify-center gap-8 md:flex"
           >
             {NAV_LINKS.map((link) => (
               <Link
@@ -46,11 +78,17 @@ export function Header() {
           <div className="shrink-0">
             {user ? (
               <div className="flex items-center gap-3">
-                <div className="relative">
+                <div className="relative" ref={notifRef}>
                   <button
                     type="button"
                     aria-label="Notificaciones"
-                    className="flex h-9 w-9 items-center justify-center"
+                    aria-expanded={notifOpen}
+                    aria-haspopup="menu"
+                    onClick={() => {
+                      setNotifOpen((open) => !open);
+                      setNotifSeen(true);
+                    }}
+                    className="flex h-9 w-9 items-center justify-center rounded-md transition hover:bg-slate-50"
                   >
                     <Image
                       src="/brand/notifications_icon.svg"
@@ -60,7 +98,41 @@ export function Header() {
                       unoptimized
                     />
                   </button>
-                  <span className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-brand-red" />
+                  {!notifSeen && (
+                    <span className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-brand-red" />
+                  )}
+
+                  {notifOpen && (
+                    <div
+                      role="menu"
+                      aria-label="Notificaciones"
+                      className="absolute right-0 top-full z-20 mt-2 w-80 overflow-hidden rounded-md border border-slate-100 bg-white shadow-lg"
+                    >
+                      <div className="border-b border-slate-100 px-4 py-3">
+                        <p className="font-display text-sm font-semibold text-brand-navy">
+                          Notificaciones
+                        </p>
+                      </div>
+                      <ul className="max-h-96 divide-y divide-slate-100 overflow-y-auto">
+                        {NOTIFICATIONS.map((n) => (
+                          <li
+                            key={n.id}
+                            className="px-4 py-3 transition hover:bg-brand-red-light/40"
+                          >
+                            <p className="text-sm font-semibold text-brand-navy">
+                              {n.title}
+                            </p>
+                            <p className="mt-0.5 text-sm text-slate-600">
+                              {n.body}
+                            </p>
+                            <p className="mt-1 text-xs text-slate-400">
+                              {n.time}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
                 <div className="relative">

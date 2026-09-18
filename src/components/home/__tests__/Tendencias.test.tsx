@@ -15,10 +15,14 @@ describe('Tendencias', () => {
     ).toBe(true);
   });
 
-  it('exposes Semana and Filtro dropdowns', () => {
+  it('exposes the Filtro genre dropdown', () => {
     render(<Tendencias />);
-    expect(screen.getByLabelText('Semana')).toBeInTheDocument();
     expect(screen.getByLabelText('Filtro')).toBeInTheDocument();
+  });
+
+  it('does not render a period (Semana) dropdown', () => {
+    render(<Tendencias />);
+    expect(screen.queryByLabelText('Semana')).not.toBeInTheDocument();
   });
 
   it('filters the shown cards when a genre is chosen in Filtro', async () => {

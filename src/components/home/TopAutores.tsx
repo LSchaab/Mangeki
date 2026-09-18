@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Avatar } from '@/components/brand/Avatar';
 import { featuredAuthors } from '@/data/catalog';
 
@@ -22,16 +21,11 @@ export function TopAutores() {
         <ul className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3">
           {authors.map((author) => (
             <li key={author.id} className="flex flex-col items-center">
-              {/* Avatar with seigaiha motif clipped behind its top-left. */}
+              {/* Avatar with a circular seigaiha texture peeking behind its top-left. */}
               <div className="relative h-32 w-32 sm:h-40 sm:w-40">
-                <Image
-                  src="/brand/circles_svg.svg"
-                  alt=""
+                <div
                   aria-hidden
-                  width={96}
-                  height={96}
-                  unoptimized
-                  className="pointer-events-none absolute -left-4 -top-4 h-20 w-20 select-none"
+                  className="pointer-events-none absolute -left-4 -top-4 h-24 w-24 select-none rounded-full bg-[url('/brand/circles_svg.svg')] bg-repeat sm:h-28 sm:w-28"
                 />
                 <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full grayscale [&>img]:h-full [&>img]:w-full">
                   <Avatar
@@ -51,7 +45,7 @@ export function TopAutores() {
                 className="mt-2 block h-2.5 w-2.5 rounded-full bg-brand-red"
               />
 
-              <p className="mt-3 text-center text-sm text-slate-500">
+              <p className="mt-3 text-center text-sm text-slate-700">
                 {author.notableWork}
               </p>
             </li>

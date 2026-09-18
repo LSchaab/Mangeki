@@ -2,6 +2,7 @@
 
 import { useId, useState, type FormEvent } from 'react';
 import type { TitleType } from '@/data/types';
+import { allGenres } from '@/data/catalog';
 import { useLibrary } from '@/context/LibraryContext';
 
 const inputClass =
@@ -13,19 +14,26 @@ const TYPE_OPTIONS: { value: TitleType; label: string }[] = [
   { value: 'manhua', label: 'Manhua' },
 ];
 
+interface AddTitleFormProps {
+  /** Called after a title is added successfully (e.g. to close a modal). */
+  onSuccess?: () => void;
+}
+
 /**
  * Form that lets a logged-in reader add their own title to their library.
  * Géneros is a free-text, comma-separated field split into trimmed slugs.
  */
-export function AddTitleForm() {
+export function AddTitleForm({ onSuccess }: AddTitleFormProps = {}) {
   const uid = useId();
   const { addCustom } = useLibrary();
+
+  const genreOptions = allGenres();
 
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [type, setType] = useState<TitleType>('manga');
   const [coverUrl, setCoverUrl] = useState('');
-  const [genres, setGenres] = useState('');
+  const [genres, setGenres] = useState<string[]>([]);
   const [synopsis, setSynopsis] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -35,8 +43,14 @@ export function AddTitleForm() {
     setAuthor('');
     setType('manga');
     setCoverUrl('');
-    setGenres('');
+    setGenres([]);
     setSynopsis('');
+  }
+
+  function toggleGenre(slug: string) {
+    setGenres((prev) =>
+      prev.includes(slug) ? prev.filter((g) => g !== slug) : [...prev, slug],
+    );
   }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -44,23 +58,19 @@ export function AddTitleForm() {
     setError('');
     setSuccess('');
 
-    const genreList = genres
-      .split(',')
-      .map((g) => g.trim())
-      .filter((g) => g.length > 0);
-
     const result = addCustom({
       title: title.trim(),
       author: author.trim(),
       type,
       coverUrl: coverUrl.trim(),
       synopsis: synopsis.trim(),
-      genres: genreList,
+      genres,
     });
 
     if (result.ok) {
       reset();
       setSuccess('Añadido a tu biblioteca.');
+      onSuccess?.();
       return;
     }
     setError(result.error ?? 'No se pudo añadir el título.');
@@ -126,20 +136,32 @@ export function AddTitleForm() {
         />
       </div>
 
-      <div className="flex flex-col gap-1">
-        <label htmlFor={`${uid}-generos`} className="font-semibold text-brand-navy">
-          Géneros
-        </label>
-        <input
-          id={`${uid}-generos`}
-          type="text"
-          value={genres}
-          onChange={(e) => setGenres(e.target.value)}
-          className={inputClass}
-          placeholder="accion, romance, aventura"
-        />
-        <p className="text-xs text-slate-500">Separa los géneros con comas.</p>
-      </div>
+      <fieldset className="flex flex-col gap-2">
+        <legend className="font-semibold text-brand-navy">Géneros</legend>
+        <p className="text-xs text-slate-500">
+          Toca para elegir los que quieras.
+        </p>
+        <div className="flex flex-wrap gap-2 pt-1">
+          {genreOptions.map((genre) => {
+            const selected = genres.includes(genre.slug);
+            return (
+              <button
+                key={genre.slug}
+                type="button"
+                aria-pressed={selected}
+                onClick={() => toggleGenre(genre.slug)}
+                className={`rounded-full border px-3 py-1.5 text-sm font-medium transition ${
+                  selected
+                    ? 'border-brand-red bg-brand-red text-white'
+                    : 'border-slate-300 bg-white text-brand-navy hover:border-brand-red hover:text-brand-red'
+                }`}
+              >
+                {genre.name}
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
 
       <div className="flex flex-col gap-1">
         <label htmlFor={`${uid}-sinopsis`} className="font-semibold text-brand-navy">

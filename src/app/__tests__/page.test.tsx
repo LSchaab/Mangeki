@@ -5,7 +5,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import { LibraryProvider } from '@/context/LibraryContext';
 
 describe('Home page', () => {
-  it('composes the landing sections (Universo Mangeki + Tendencias)', () => {
+  it('composes the landing sections (hero banner + Tendencias)', () => {
     render(
       <AuthProvider>
         <LibraryProvider>
@@ -14,8 +14,9 @@ describe('Home page', () => {
       </AuthProvider>,
     );
 
-    expect(screen.getByText('Universo')).toBeInTheDocument();
-    expect(screen.getByText('Mangeki')).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', { name: /universo Mangeki/i }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole('heading', { name: 'Tendencias' }),
     ).toBeInTheDocument();

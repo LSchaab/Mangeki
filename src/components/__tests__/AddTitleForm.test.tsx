@@ -62,10 +62,9 @@ describe('AddTitleForm', () => {
 
     await user.type(screen.getByLabelText('Título'), 'Mi Manga Original');
     await user.type(screen.getByLabelText('Autor'), 'Autora Demo');
-    await user.type(
-      screen.getByLabelText('Géneros'),
-      'accion, romance',
-    );
+    // Genres are now selectable chips instead of a free-text field.
+    await user.click(screen.getByRole('button', { name: 'Action' }));
+    await user.click(screen.getByRole('button', { name: 'Romance' }));
 
     await user.click(screen.getByRole('button', { name: 'Añadir título' }));
 

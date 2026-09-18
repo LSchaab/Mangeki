@@ -4,8 +4,6 @@ import { useMemo, useState } from 'react';
 import { allGenres, trendingTitles } from '@/data/catalog';
 import { TitleCarousel } from '@/components/TitleCarousel';
 
-const PERIODS = ['Semana', 'Mes', 'Año'] as const;
-
 /**
  * Red chevron used as the dropdown accent. The native <select> arrow is hidden
  * via `appearance-none` and this icon is overlaid on the right.
@@ -32,10 +30,8 @@ const selectClass =
 
 export function Tendencias() {
   const genres = allGenres();
-  const [period, setPeriod] = useState<string>(PERIODS[0]);
   const [genre, setGenre] = useState<string>('');
 
-  // `period` is cosmetic per spec; the source list is the trending ranking.
   const source = useMemo(() => trendingTitles(), []);
   const titles = useMemo(
     () => (genre === '' ? source : source.filter((t) => t.genres.includes(genre))),
@@ -48,26 +44,6 @@ export function Tendencias() {
         <h2 className="font-display text-2xl font-bold text-brand-navy sm:text-3xl">
           Tendencias
         </h2>
-
-        <div className="relative">
-          <label htmlFor="tendencias-periodo" className="sr-only">
-            Semana
-          </label>
-          <select
-            id="tendencias-periodo"
-            aria-label="Semana"
-            value={period}
-            onChange={(e) => setPeriod(e.target.value)}
-            className={selectClass}
-          >
-            {PERIODS.map((p) => (
-              <option key={p} value={p}>
-                {p}
-              </option>
-            ))}
-          </select>
-          <Chevron />
-        </div>
 
         <div className="relative">
           <label htmlFor="tendencias-filtro" className="sr-only">

@@ -40,6 +40,8 @@ export interface CustomTitle {
   synopsis: string;
   genres: string[];
   createdAt: string;
+  /** Whether the user has marked their own title as read. */
+  read?: boolean;
 }
 
 export interface User {

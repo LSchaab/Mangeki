@@ -3,13 +3,13 @@ import { Wordmark } from '@/components/brand/Wordmark';
 import { SocialIcons } from '@/components/brand/SocialIcons';
 import { AppBadges } from '@/components/brand/AppBadges';
 
+// Mirrors the header nav (Home / Catálogo / Nosotros), plus Mi Perfil, which
+// points at /login here since the footer isn't auth-aware.
 const FOOTER_LINKS: { label: string; href: string }[] = [
   { label: 'Home', href: '/' },
-  { label: 'Nosotros', href: '/nosotros' },
-  { label: 'Nuevo & Popular', href: '/nuevo-y-popular' },
-  { label: 'Mi Perfil', href: '/mi-perfil' },
   { label: 'Catálogo', href: '/catalogo' },
-  { label: 'Géneros', href: '/generos' },
+  { label: 'Nosotros', href: '/nosotros' },
+  { label: 'Mi Perfil', href: '/login' },
 ];
 
 export function Footer() {

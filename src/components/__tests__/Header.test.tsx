@@ -25,9 +25,6 @@ describe('Header', () => {
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Catálogo' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Nosotros' })).toBeInTheDocument();
-    expect(
-      screen.getByRole('link', { name: 'Nuevo & Popular' }),
-    ).toBeInTheDocument();
   });
 
   it('links to /login when logged out', () => {

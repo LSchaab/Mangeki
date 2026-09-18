@@ -28,15 +28,15 @@ describe('GuardarButton', () => {
     localStorage.clear();
   });
 
-  it('logged out: shows a link "Inicia sesión para guardar" to /login', () => {
+  it('logged out: shows a link "Inicia sesión para marcar como leído" to /login', () => {
     render(<GuardarButton titleId="2" />, { wrapper });
     const link = screen.getByRole('link', {
-      name: 'Inicia sesión para guardar',
+      name: 'Inicia sesión para marcar como leído',
     });
     expect(link).toHaveAttribute('href', '/login');
   });
 
-  it('logged in: toggles between "Guardar" and "✓ En tu biblioteca"', async () => {
+  it('logged in: toggles between "Marcar como leído" and "✓ Leído"', async () => {
     const user = userEvent.setup();
     // Seed a session so the provider hydrates a logged-in user.
     localStorage.setItem('mangeki.users', JSON.stringify([DEMO_ACCOUNT]));
@@ -44,17 +44,19 @@ describe('GuardarButton', () => {
 
     render(<GuardarButton titleId="2" />, { wrapper });
 
-    const saveBtn = await screen.findByRole('button', { name: 'Guardar' });
+    const saveBtn = await screen.findByRole('button', {
+      name: 'Marcar como leído',
+    });
     await user.click(saveBtn);
 
     const savedBtn = await screen.findByRole('button', {
-      name: '✓ En tu biblioteca',
+      name: '✓ Leído',
     });
     expect(savedBtn).toBeInTheDocument();
 
     await user.click(savedBtn);
     expect(
-      await screen.findByRole('button', { name: 'Guardar' }),
+      await screen.findByRole('button', { name: 'Marcar como leído' }),
     ).toBeInTheDocument();
   });
 });

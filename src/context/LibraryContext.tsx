@@ -24,6 +24,7 @@ interface LibraryContextValue {
   save: (id: string) => void;
   remove: (id: string) => void;
   addCustom: (input: Omit<CustomTitle, 'id' | 'createdAt'>) => AddCustomResult;
+  toggleCustomRead: (id: string) => void;
 }
 
 const LibraryContext = createContext<LibraryContextValue | null>(null);
@@ -98,9 +99,26 @@ export function LibraryProvider({ children }: { children: ReactNode }) {
     return { ok: true };
   };
 
+  const toggleCustomRead = (id: string): void => {
+    if (!user) return;
+    const next = customTitles.map((t) =>
+      t.id === id ? { ...t, read: !t.read } : t,
+    );
+    setCustomTitles(next);
+    writeJSON(STORAGE_KEYS.customTitles(user.id), next);
+  };
+
   return (
     <LibraryContext.Provider
-      value={{ savedIds, customTitles, isSaved, save, remove, addCustom }}
+      value={{
+        savedIds,
+        customTitles,
+        isSaved,
+        save,
+        remove,
+        addCustom,
+        toggleCustomRead,
+      }}
     >
       {children}
     </LibraryContext.Provider>

@@ -37,28 +37,21 @@ function AppleGlyph() {
 export function AppBadges({ className = '' }: AppBadgesProps) {
   return (
     <div className={`flex flex-col gap-2 ${className}`.trim()}>
-      <a
-        href="#"
-        aria-label="Descargar en Google Play"
-        className="flex items-center gap-2 rounded-md bg-black px-3 py-1.5 text-white transition hover:opacity-90"
-      >
+      {/* Decorative store badges — there's no real app to download, so no link. */}
+      <span className="flex items-center gap-2 rounded-md bg-black px-3 py-1.5 text-white">
         <GooglePlayGlyph />
         <span className="flex flex-col leading-tight text-left">
           <span className="text-[8px] uppercase tracking-wide">Disponible en</span>
           <span className="text-sm font-semibold font-display">Google Play</span>
         </span>
-      </a>
-      <a
-        href="#"
-        aria-label="Descargar en App Store"
-        className="flex items-center gap-2 rounded-md bg-black px-3 py-1.5 text-white transition hover:opacity-90"
-      >
+      </span>
+      <span className="flex items-center gap-2 rounded-md bg-black px-3 py-1.5 text-white">
         <AppleGlyph />
         <span className="flex flex-col leading-tight text-left">
           <span className="text-[8px]">Descárgalo en el</span>
           <span className="text-sm font-semibold font-display">App Store</span>
         </span>
-      </a>
+      </span>
     </div>
   );
 }

@@ -9,8 +9,8 @@ interface GuardarButtonProps {
 }
 
 /**
- * Save/remove a title from the current user's library. Logged-out visitors get
- * a link to the login page instead of a toggle they could never use.
+ * Add/remove a title from the current user's "Leídos" list. Logged-out visitors
+ * get a link to the login page instead of a toggle they could never use.
  */
 export default function GuardarButton({ titleId }: GuardarButtonProps) {
   const { user } = useAuth();
@@ -22,7 +22,7 @@ export default function GuardarButton({ titleId }: GuardarButtonProps) {
         href="/login"
         className="inline-flex items-center justify-center rounded-lg border border-brand-red px-5 py-2.5 text-sm font-semibold text-brand-red transition hover:bg-brand-red-light"
       >
-        Inicia sesión para guardar
+        Inicia sesión para marcar como leído
       </Link>
     );
   }
@@ -40,7 +40,7 @@ export default function GuardarButton({ titleId }: GuardarButtonProps) {
           : 'inline-flex items-center justify-center rounded-lg bg-brand-red px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-navy'
       }
     >
-      {saved ? '✓ En tu biblioteca' : 'Guardar'}
+      {saved ? '✓ Leído' : 'Marcar como leído'}
     </button>
   );
 }

@@ -41,13 +41,13 @@ export function SocialIcons({ className = '' }: SocialIconsProps) {
     <ul className={`flex items-center gap-3 ${className}`.trim()}>
       {socials.map((social) => (
         <li key={social.label}>
-          <a
-            href="#"
+          {/* Decorative only — these accounts don't exist, so no link. */}
+          <span
             aria-label={social.label}
-            className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-dotted border-white text-white transition hover:bg-white hover:text-brand-red"
+            className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-dotted border-white text-white"
           >
             {social.icon}
-          </a>
+          </span>
         </li>
       ))}
     </ul>
